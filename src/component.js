@@ -144,17 +144,8 @@ class JsonViewer extends HTMLElement {
       if (this.#options.data === newDataString) return
       this.#options.data = newDataString
 
-      if (isUrl(newData)) {
-        fetch(newData)
-          .then((r) => r.json())
-          .then((data) => {
-            this.#contentData = data
-            this.#render()
-          })
-      } else {
-        this.#contentData = newData
-        this.#render()
-      }
+      this.#contentData = newData
+      this.#render()
     } catch (e) {
       this.#warn(`Attribute data: ${e.message}`)
     }
